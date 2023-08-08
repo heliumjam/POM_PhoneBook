@@ -20,4 +20,10 @@ public class LoginRegistrationScreen extends BaseScreen{
     MobileElement regBtn;
     @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/loginBtn']")
     MobileElement loginBtn;
+
+    public void inputEmailPassword(String email, String password) {
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+    }
 }
+

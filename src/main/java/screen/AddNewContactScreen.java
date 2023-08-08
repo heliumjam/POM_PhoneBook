@@ -2,22 +2,50 @@ package screen;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import model.Contact;
 import org.openqa.selenium.support.FindBy;
 
 public class AddNewContactScreen extends BaseScreen{
-
     public AddNewContactScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/action_bar']/android.widget.TextView")
-    MobileElement contactlistText;
-    @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/action_bar']/androidx.appcompat.widget.LinearLayoutCompat")
-    MobileElement compactMenuMoreOptions;
-   @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/add_contact_btn']")
-     MobileElement addContactBtn;
-    @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/recyclerView']/rowContainer/rowPhone")
-    MobileElement contact;
+    //Add new contact
+// 	class android.widget.EditText
 
 
+    @FindBy(id = "com.sheygam.contactapp:id/inputName")
+    MobileElement inputName;
+    @FindBy(id = "com.sheygam.contactapp:id/inputLastName")
+    MobileElement inputLastName;
+
+    @FindBy(id = "com.sheygam.contactapp:id/inputEmail")
+    MobileElement inputEmail;
+
+    @FindBy(id = "com.sheygam.contactapp:id/inputPhone")
+    MobileElement inputPhone;
+    @FindBy(id = "com.sheygam.contactapp:id/inputAddress")
+    MobileElement inputAddress;
+    @FindBy(id = "com.sheygam.contactapp:id/inputDesc")
+    MobileElement inputDesc;
+
+    @FindBy(id = "com.sheygam.contactapp:id/createBtn")
+    MobileElement createBtn;
+
+    public AddNewContactScreen fillContactForm(Contact contact){
+        waitElement(createBtn,5);
+        type(inputName, contact.getName());
+        type(inputLastName, contact.getLastName());
+        type(inputEmail, contact.getEmail());
+        type(inputPhone, contact.getPhone());
+        type(inputAddress, contact.getAddress());
+        type(inputDesc, contact.getDescription());
+        return this;
+
+    }
+
+    public ContactListScreen submitContact(){
+        createBtn.click();
+        return new ContactListScreen(driver);
+    }
 }

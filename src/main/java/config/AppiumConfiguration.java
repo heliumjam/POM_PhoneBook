@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AppiumConfiguration {
-    public static AppiumDriver<MobileElement> driver;
+    public static AppiumDriver<MobileElement> driver; // static fo priority
 
 //    {
 //        "platformName": "Android",
@@ -23,12 +23,12 @@ public class AppiumConfiguration {
 
 @BeforeSuite
     public void setUp() throws MalformedURLException {
-    DesiredCapabilities capabilities = new DesiredCapabilities();
+    DesiredCapabilities capabilities = new DesiredCapabilities(); // setup capabilities
     capabilities.setCapability("platformName", "Android");
+    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Nex6");
     capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"8.0");
     capabilities.setCapability("appPackage", "com.sheygam.contactapp");
     capabilities.setCapability("appActivity", ".SplashActivity");
-    capabilities.setCapability("deviceName", "Nex6");
 
     capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "Appium");
     capabilities.setCapability(MobileCapabilityType.APP, "C:\\Tools\\apk\\contacts-android.apk");

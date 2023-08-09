@@ -8,7 +8,7 @@ import screen.SplashScreen;
 public class AddNewContactTest extends AppiumConfiguration {
     @BeforeMethod
     public void precondition(){
-        String email = "domes7@mail.com";
+        String email = "domes@mail.com";
         String password = "123456Aa$";
         new SplashScreen(driver)
                 .goToAuthentificationScreen()
@@ -32,7 +32,8 @@ public class AddNewContactTest extends AppiumConfiguration {
     new ContactListScreen(driver)
             .openContactForm()
             .fillContactForm(contact)
-            .submitContact();
+            .submitContact()
+            .isNewContactPresent(contact.getName());
 
 }
 }

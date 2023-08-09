@@ -48,5 +48,8 @@ public boolean isContactListPagePresent() {
     addContactBtn.click();
     return new AddNewContactScreen(driver);
    }
+    public boolean isNewContactPresent(String contactName) {
+    return rowName.equals(contactName);
+    }
 
 }

@@ -1,6 +1,7 @@
 import config.AppiumConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import screen.AuthentificationScreen;
 import screen.SplashScreen;
 
 public class RegistrationTests extends AppiumConfiguration {
@@ -10,7 +11,7 @@ public class RegistrationTests extends AppiumConfiguration {
     String emailNegative = "pommail.ru";
 
     @Test
-    public void LoginPositive(){
+    public void RegistrationPositive(){
         Assert.assertTrue(
                 new SplashScreen(driver)
                         .goToAuthentificationScreen()
@@ -19,6 +20,17 @@ public class RegistrationTests extends AppiumConfiguration {
                         .submitRegistration()
                         .isContactListPagePresent()
         );
+
+    }
+    @Test
+    public void RegistrationNegative(){
+
+                new SplashScreen(driver)
+                        .goToAuthentificationScreen()
+                        .fillEmail(emailNegative)
+                        .fillPassword(password)
+                        .submitRegistration();
+        new AuthentificationScreen(driver).submitRegistrationNegative();
 
     }
 }

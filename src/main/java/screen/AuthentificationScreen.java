@@ -2,7 +2,10 @@ package screen;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AuthentificationScreen extends BaseScreen {
 
@@ -44,21 +47,35 @@ public class AuthentificationScreen extends BaseScreen {
     }
 
     public ContactListScreen submitLogin(){
-       // waitElement(regBtn,5);
         loginBtn.click();
         return new ContactListScreen(driver);
     }
 
     public ContactListScreen submitRegistration(){
-       // waitElement(regBtn,5);
         regBtn.click();
         return new ContactListScreen(driver);
     }
 
+    public boolean isAlertPresent() {
+
+        Alert alert = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.alertIsPresent());
+        if (alert == null) return false;
+        driver.switchTo().alert();
+        // System.out.println(alert.getText());
+        alert.accept();
+        return true;
+    }
+
     public AuthentificationScreen submitRegistrationNegative(){
-       // waitElement(regBtn,5);
-        regBtn.click();
+        Alert alert = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.alertIsPresent());
+        if (alert == null) return this;
+        driver.switchTo().alert();
+        // System.out.println(alert.getText());
+        alert.accept();
         return this;
+
     }
 
 

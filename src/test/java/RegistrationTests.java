@@ -24,13 +24,12 @@ public class RegistrationTests extends AppiumConfiguration {
     }
     @Test
     public void RegistrationNegative(){
-
                 new SplashScreen(driver)
                         .goToAuthentificationScreen()
                         .fillEmail(emailNegative)
                         .fillPassword(password)
-                        .submitRegistration();
-        new AuthentificationScreen(driver).submitRegistrationNegative();
+                        .submitRegistrationNegative()
+                        .isErrorMessageHasText("{username=must be a well-formed email address}");
 
     }
 }

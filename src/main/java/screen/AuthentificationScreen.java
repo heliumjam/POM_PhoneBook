@@ -29,6 +29,16 @@ public class AuthentificationScreen extends BaseScreen {
     @FindBy(id = "com.sheygam.contactapp:id/loginBtn")
     MobileElement loginBtn;
 
+    @FindBy(id = "android:id/message")
+    MobileElement errorText;
+
+
+    @FindBy(id = "android:id/button1")
+    MobileElement errorBtnOk;
+
+
+
+
     public String getPageAuthName()  {
 
         return getTextBase(authViewText);
@@ -67,16 +77,23 @@ public class AuthentificationScreen extends BaseScreen {
         return true;
     }
 
-    public AuthentificationScreen submitRegistrationNegative(){
+    public AuthentificationScreen submitRegistrationNegativeMyAlert(){
         Alert alert = new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.alertIsPresent());
         if (alert == null) return this;
         driver.switchTo().alert();
-        // System.out.println(alert.getText());
+        //System.out.println(alert.getText());
         alert.accept();
         return this;
 
     }
+    public AuthentificationScreen submitRegistrationNegative(){
+        regBtn.click();
+        return this;
+    }
 
-
+ public boolean isErrorMessageHasText(String Text){
+  //return errorText.getText().contains(Text); // Simple check
+    return isErrorMessageContainsText(Text); // Alert check
+ }
 }
